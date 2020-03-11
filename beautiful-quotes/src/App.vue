@@ -12,7 +12,7 @@
           <p v-if="instance.me && instance.me.admin" class="mt-4">
             <strong>FLAG:</strong>
             <span v-if="instance.flag">{{ instance.flag }}</span>
-            <a v-else @click="$store.dispatch('loadFlag')"> Click to load flag</a>
+            <a class="flag-col" v-else @click="$store.dispatch('loadFlag')"> Click to load flag</a>
           </p>
           <template v-if="isAuthenticated">
             <p><router-link to="/" @click.native="signOff">Logout</router-link></p>
@@ -110,5 +110,10 @@ a {
     transform: translateY(-30);
     opacity: 0;
   }
+}
+
+.flag-col {
+  font-weight: bold;
+  color: red;
 }
 </style>
