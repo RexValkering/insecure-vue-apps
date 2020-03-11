@@ -11,8 +11,7 @@ Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 const router = new VueRouter({
-  routes,
-  mode: "history"
+  routes
 });
 
 import { translateDirective } from "./translate";

@@ -5,6 +5,7 @@ import ExerciseTwo from "./components/ExerciseTwo.vue";
 import ExerciseThree from "./components/ExerciseThree.vue";
 import ExerciseBonus from "./components/ExerciseBonus.vue";
 import Sandbox from "./components/Sandbox.vue";
+import BeefHooked from "./components/BeefHooked.vue";
 
 export const routes = [
   {
@@ -34,5 +35,9 @@ export const routes = [
   {
     path: "/sandbox",
     component: Sandbox
-  }
+  },
+  {
+    path: "/beef",
+    component: BeefHooked
+  },
 ];

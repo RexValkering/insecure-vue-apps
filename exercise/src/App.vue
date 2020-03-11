@@ -11,7 +11,7 @@
           <p><router-link to="/exercise-1">Exercise 1: Abusing v-html</router-link></p>
           <p><router-link to="/exercise-2">Exercise 2: Abusing v-href</router-link></p>
           <p><router-link to="/exercise-3">Exercise 3: Clickjacking</router-link></p>
-          <p><router-link to="/exercise-regex">Bonus exercise: Beautiful Regex</router-link></p>
+          <!-- <p><router-link to="/exercise-regex">Bonus exercise: Beautiful Regex</router-link></p> -->
         </div>
 
         <div class="col col-md-9 pl-md-5">
@@ -26,7 +26,11 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+
+  created() {
+    localStorage.setItem("secret-key", "PINEAPPLE ON PIZZA");  
+  }
 };
 </script>
 
