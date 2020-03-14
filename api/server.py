@@ -19,8 +19,10 @@ app = Flask(__name__)
 api = Api(app)
 
 if not os.path.exists("config.yaml"):
-    exit("Please create a config.yaml first")
+    exit("Please create a config.yaml first.")
 CONFIG = load(open('config.yaml').read(), Loader=Loader)
+
+# Avoid CORS errors.
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
@@ -78,13 +80,13 @@ class RestDatabase(object):
         )""")
 
     def _init_data(self):
+        flags = CONFIG["beautiful_quotes_flag"], CONFIG["beautiful_quotes_2_flag"], CONFIG["beautiful_quotes_3_flag"]
+
         if not self.get_rows("SELECT * FROM projects"):
             self.query("""INSERT INTO projects (id, project_name, flag) VALUES
-                (?, 'beautiful-quotes', 'PIEKEN'),
-                (?, 'beautiful-quotes-2', 'ZONDER'),
-                (?, 'beautiful-quotes-3', 'DALEN'),
-                (?, 'beautiful-regex', '');""", (generate_id(), generate_id(), generate_id(), generate_id()
-                                                 ))
+                (?, 'beautiful-quotes', ?),
+                (?, 'beautiful-quotes-2', ?),
+                (?, 'beautiful-quotes-3', ?)""", (generate_id(), flags[0], generate_id(), flags[1], generate_id(), flags[2]))
 
     def query(self, query, variables=tuple()):
         """Execute a query in the database."""

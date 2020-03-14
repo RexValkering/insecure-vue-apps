@@ -1,0 +1,11 @@
+# Example config file
+# Change the data below and save as config.yaml
+master_password: CHANGEMEPLEASE
+api_port: 5002
+api_url: "https://workshop-api.example.com"
+beautiful_quotes_url: "https://beautiful-quotes.example.com"
+beautiful_quotes_2_url: "https://beautiful-quotes-2.example.com"
+beautiful_quotes_3_url: "https://beautiful-quotes-3.example.com"
+beautiful_quotes_flag: PIEKEN
+beautiful_quotes_2_flag: ZONDER
+beautiful_quotes_3_flag: DALEN

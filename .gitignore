@@ -1,0 +1,12 @@
+.envrc
+.vscode
+api/config.yaml
+api/database.db
+api/instances
+**/env
+**/*.zip
+**/dist
+yarn.lock
+*.swp
+*.code-workspace
+
