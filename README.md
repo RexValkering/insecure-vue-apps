@@ -1,6 +1,6 @@
 # Change My Vue
 
-## Hacking insecure Vue-apps
+## Hacking insecure Vue apps
 
 This project was created for a Cross-Site Scripting (XSS) workshop held in March 2020.
 It shows in which ways XSS vulnerabilities can be present in Vue.js code and allows users to learn about these by hacking three different websites.
