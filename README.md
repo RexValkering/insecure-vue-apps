@@ -6,6 +6,14 @@ This project was created for a Cross-Site Scripting (XSS) workshop held in March
 It shows in which ways XSS vulnerabilities can be present in Vue.js code and allows users to learn about these by hacking three different websites.
 The exercises of this workshop were inspired by the Vue.js [Security](https://vuejs.org/v2/guide/security.html) page.
 
+## Project demo
+
+The main website and exercises should still be up on:
+
+- https://workshop.rexvalkering.nl/
+
+However, since the worker is not running, your hacks will not work. If you want to try the hacks, you should set this up yourself!
+
 ## Project contents
 
 - An exercise website, written in Vue.js, with examples, instructions and exercise pages.

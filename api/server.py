@@ -333,4 +333,4 @@ api.add_resource(Flag, '/flag')
 
 
 if __name__ == '__main__':
-    app.run(port='5002', debug=True)
+    app.run(port=CONFIG['api_port'], debug=True)
